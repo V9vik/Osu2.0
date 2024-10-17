@@ -2,16 +2,20 @@ package org.example;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 public class Client {
     public static void main(String[] args) {
 
+
+
+
         String host = "localhost";
         int port = 8080;
         Scanner console = new Scanner(System.in);
-        try (Socket socket = new Socket(host, port)) {
+       try (Socket socket = new Socket("netology.homework", 127, null, 0)){
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out.println("Ваше имя");
@@ -25,7 +29,7 @@ public class Client {
             String kids = console.nextLine();
             out.println(kids);
             System.out.println(in.readLine());
-        } catch (IOException e) {
+        } catch ( IOException e) {
             System.err.println("Ошибка подключения: " + e.getMessage());
         }
     }

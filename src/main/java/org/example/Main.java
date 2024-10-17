@@ -10,7 +10,7 @@ import java.net.Socket;
 public class Main {
     public static void main(String[] args) {
         int port = 8080;
-        try(ServerSocket serverSocket = new ServerSocket(port)) {
+        try (ServerSocket serverSocket = new ServerSocket(127, 0, null)) {
             System.out.println("Сервер запущен!");
             while (true) {
                 try (Socket clientSocket = serverSocket.accept()) {
